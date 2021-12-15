@@ -1,0 +1,42 @@
+﻿@model List<IdentityRole>
+@{
+    ViewData["Title"] = "Roles";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-primary mb-3" asp-area="Admin" asp-controller="Account" asp-action="RoleCreate">Create role</a>
+        </div>
+        <hr />
+        <div class="col-lg-12 mt-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 0;
+                        foreach (var role in Model)
+                        {
+                            i++;
+                            <tr>
+                                <th scope="row">@i</th>
+                                <td>@role.Name</td>
+                                <td>
+                                    <a class="btn btn-success" asp-area="Admin" asp-controller="Account" asp-action="RoleUpdate" asp-route-id="@role.Id">Update</a>
+                                    <a class="btn btn-danger" asp-area="Admin" asp-controller="Account" asp-action="RoleDelete" asp-route-id="@role.Id" onclick="return confirm('Are you sure?')">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
